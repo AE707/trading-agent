@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#0066cc',
+        primary: '#0086cc',
         secondary: '#00cc99',
         danger: '#cc0000',
         warning: '#ffcc00',
@@ -43,10 +43,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-  ],
 };
 
 export default config;
