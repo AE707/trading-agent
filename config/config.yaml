@@ -1,0 +1,14 @@
+trading:
+  symbol: BTCUSDT
+  timeframe: 1m
+  risk_per_trade: 0.01
+  max_drawdown: 0.15
+  sma_short: 20
+  sma_long: 50
+broker:
+  paper: true
+db:
+  uri: postgresql+psycopg2://postgres:postgres@localhost:5432/trading
+backtest:
+  slippage: 0.0001
+  data_path: data/market_data.csv
