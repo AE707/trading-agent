@@ -8,6 +8,10 @@ import { AreaChartComponent, StackedChartComponent, ComposedChartComponent } fro
 import { exportToCSV, exportToPDF } from './components/ExportUtils';
 import { TableFilter } from './components/TableFilter';
 import { DateRangeFilter } from './components/DateRangeFilter';
+import DraggableWidget from './components/DraggableWidget';
+import { NotificationCenter } from './components/Notifications';
+import ColumnManager from './components/ColumnManager';
+import AdvancedMetrics from './components/AdvancedMetrics';
 
 const phaseData = [
   { name: 'P1', accuracy: 68 },
@@ -89,6 +93,8 @@ export default function Dashboard() {
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <span>Live</span>
           </div>
+            <NotificationCenter />
+
         </header>
 
         {/* Content */}
@@ -185,6 +191,14 @@ export default function Dashboard() {
           >
             📄 Export PDF
           </button>
+          
+                <ColumnManager columns={[
+                  { id: 'phase', label: 'Phase', visible: true },
+                  { id: 'accuracy', label: 'Accuracy', visible: true },
+                  { id: 'tests', label: 'Total Tests', visible: true },
+                  { id: 'success', label: 'Success Rate', visible: true },
+                ]} onColumnChange={() => {}} />
+
         </div>
 
         {/* Filters */}
@@ -197,6 +211,13 @@ export default function Dashboard() {
           <div className="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
             <TestPhases />
           </div>
+
+            {/* Advanced Analytics Dashboard */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-6">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Advanced Analytics</h2>
+              <AdvancedMetrics />
+            </div>
+
         </main>
       </div>
     </div>
