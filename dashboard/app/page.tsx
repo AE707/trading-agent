@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import MetricsCard from './components/MetricsCard';
 import TestPhases from './components/TestPhases';
+import { AreaChartComponent, StackedChartComponent, ComposedChartComponent } from './components/EnhancedCharts';
+import { exportToCSV, exportToPDF } from './components/ExportUtils';
+import { TableFilter } from './components/TableFilter';
+import { DateRangeFilter } from './components/DateRangeFilter';
 
 const phaseData = [
   { name: 'P1', accuracy: 68 },
@@ -33,6 +37,9 @@ export default function Dashboard() {
   });
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+    const [filteredPipeline, setFilteredPipeline] = useState(phaseData);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
   return (
     <div className="flex h-screen bg-gray-900 text-white overflow-hidden">
@@ -156,6 +163,35 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
+          
+        {/* Quick Wins - Enhanced Charts */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+          <AreaChartComponent />
+          <StackedChartComponent />
+          <ComposedChartComponent />
+        </div>
+
+        {/* Export & Filter Controls */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <button
+            onClick={() => exportToCSV(filteredPipeline, 'ml-pipeline.csv')}
+            className="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition"
+          >
+            📥 Export CSV
+          </button>
+          <button
+            onClick={() => exportToPDF(filteredPipeline, 'ml-pipeline.pdf', 'ML Pipeline Results')}
+            className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
+          >
+            📄 Export PDF
+          </button>
+        </div>
+
+        {/* Filters */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+          <TableFilter data={filteredPipeline} searchableFields={['name', 'accuracy']} onFilterChange={setFilteredPipeline} />
+          <DateRangeFilter onDateRangeChange={(start, end) => { setStartDate(start); setEndDate(end); }} />
+        </div>
 
           {/* ML Pipeline Table */}
           <div className="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
