@@ -12,6 +12,11 @@ import DraggableWidget from './components/DraggableWidget';
 import { NotificationCenter } from './components/Notifications';
 import ColumnManager from './components/ColumnManager';
 import AdvancedMetrics from './components/AdvancedMetrics';
+import MarketTicker from './components/MarketTicker';
+import TradeStatusBadge from './components/TradeStatusBadge';
+import TimePeriodToggle from './components/TimePeriodToggle';
+import SparklineCard from './components/SparklineCard';
+import PortfolioPieChart from './components/PortfolioPieChart';
 
 const phaseData = [
   { name: 'P1', accuracy: 68 },
