@@ -2,38 +2,64 @@
 
 import Link from 'next/link';
 
+const navigationItems = [
+  { icon: '📊', href: '/', tooltip: 'Dashboard' },
+  { icon: '👥', href: '#', tooltip: 'Users' },
+  { icon: '📈', href: '#', tooltip: 'Analytics' },
+  { icon: '🤖', href: '#', tooltip: 'Bots' },
+  { icon: '💰', href: '#', tooltip: 'Wallet' },
+  { icon: '⚙️', href: '#', tooltip: 'Settings' },
+  { icon: '🔔', href: '#', tooltip: 'Notifications' },
+];
+
+const bottomItems = [
+  { icon: '🌙', href: '#', tooltip: 'Theme' },
+  { icon: '👤', href: '#', tooltip: 'Profile' },
+];
+
 export default function Sidebar() {
   return (
-    <aside className="w-64 bg-slate-900 border-r border-slate-700 p-6 flex flex-col h-screen">
-      {/* Logo */}
-      <div className="mb-8 pb-6 border-b border-slate-700">
-        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+    <aside className="w-16 bg-slate-950 border-r border-slate-800 flex flex-col items-center justify-between py-6 sticky top-0 h-screen overflow-hidden">
+      {/* Top Logo */}
+      <div className="flex flex-col items-center gap-8">
+        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center hover:shadow-lg hover:shadow-blue-500/50 transition-all cursor-pointer">
+          <span className="text-xl font-bold text-white">📱</span>
+        </div>
+
+        {/* Main Navigation */}
+        <nav className="flex flex-col gap-2">
+          {navigationItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="w-12 h-12 rounded-lg flex items-center justify-center text-xl hover:bg-slate-800 hover:text-blue-400 transition-all duration-200 group relative text-slate-400"
+              title={item.tooltip}
+            >
+              {item.icon}
+              <span className="absolute left-full ml-3 px-2 py-1 bg-slate-800 text-slate-200 text-xs whitespace-nowrap rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none font-medium">
+                {item.tooltip}
+              </span>
+            </Link>
+          ))}
+        </nav>
       </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 space-y-2">
-        <Link href="/" className="w-full px-4 py-3 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors block">
-          Overview
-        </Link>
-        <Link href="#" className="w-full px-4 py-3 rounded-lg text-gray-300 hover:bg-slate-800 transition-colors block">
-          Metrics
-        </Link>
-        <Link href="#" className="w-full px-4 py-3 rounded-lg text-gray-300 hover:bg-slate-800 transition-colors block">
-          Predictions
-        </Link>
-        <Link href="#" className="w-full px-4 py-3 rounded-lg text-gray-300 hover:bg-slate-800 transition-colors block">
-          Features
-        </Link>
-        <Link href="#" className="w-full px-4 py-3 rounded-lg text-gray-300 hover:bg-slate-800 transition-colors block">
-          Settings
-        </Link>
+      {/* Bottom Navigation */}
+      <nav className="flex flex-col gap-2">
+        {bottomItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="w-12 h-12 rounded-lg flex items-center justify-center text-xl hover:bg-slate-800 hover:text-blue-400 transition-all duration-200 group relative text-slate-400"
+            title={item.tooltip}
+          >
+            {item.icon}
+            <span className="absolute left-full ml-3 px-2 py-1 bg-slate-800 text-slate-200 text-xs whitespace-nowrap rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none font-medium">
+              {item.tooltip}
+            </span>
+          </Link>
+        ))}
       </nav>
-
-      {/* Footer */}
-      <div className="pt-6 border-t border-slate-700 text-xs text-gray-400">
-        <p>v1.0.0</p>
-        <p className="mt-1">ML Trading Agent</p>
-      </div>
     </aside>
   );
 }
