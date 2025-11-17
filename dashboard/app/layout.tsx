@@ -3,6 +3,8 @@ import './globals.css';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+
 
 export const metadata: Metadata = {
   title: 'Trading Agent Dashboard',
@@ -21,6 +23,7 @@ export default function RootLayout({
         <div className="flex h-screen bg-dark">
           {/* Sidebar */}
           <Sidebar />
+                      <Navbar />
           
           {/* Main Content */}
           <div className="flex-1 flex flex-col overflow-hidden">
