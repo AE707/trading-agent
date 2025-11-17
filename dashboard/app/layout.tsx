@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
 
 export const metadata: Metadata = {
   title: 'Trading Agent Dashboard',
@@ -31,6 +32,7 @@ export default function RootLayout({
               {children}
             </main>
           </div>
+                    <Footer />
         </div>
       </body>
     </html>
