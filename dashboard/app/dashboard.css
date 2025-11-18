@@ -382,3 +382,161 @@
     font-size: 12px;
   }
 }
+
+
+/* ===== HEADER & FOOTER STYLING ===== */
+
+/* Header Enhancements */
+header {
+  scrollbar-width: none;
+}
+
+header::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scrollbar Hide Utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Market Ticker Separators */
+.market-ticker-separator {
+  transition: background-color 0.3s ease;
+}
+
+/* Smooth Transitions for Header Navigation */
+header a,
+header button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Footer Link Hover Effects */
+footer a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+footer a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, #06b6d4, #0891b2);
+  transition: width 0.3s ease;
+}
+
+footer a:hover::after {
+  width: 100%;
+}
+
+/* Scroll to Top Button Animation */
+button[aria-label="Scroll to top"],
+button[title="Scroll to top"] {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Status Badge Pulse Animation */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Header Logo Hover Effect */
+header .group:hover {
+  animation: logoHover 0.3s ease-out;
+}
+
+@keyframes logoHover {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+/* Backdrop Blur Support */
+header div[style*="backdrop"],
+footer div[style*="backdrop"],
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+}
+
+/* Footer Column Spacing */
+footer > div > div:nth-child(1) {
+  grid-column: span 1;
+}
+
+footer > div > div:nth-child(n+2) {
+  grid-column: span 1;
+}
+
+/* Responsive Media Queries for Header/Footer */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem !important;
+  }
+
+  footer {
+    padding: 2rem 1rem !important;
+  }
+
+  footer > div > div {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.75rem !important;
+  }
+
+  footer {
+    padding: 1.5rem 1rem !important;
+  }
+
+  header nav {
+    display: none !important;
+  }
+
+  footer h3 {
+    font-size: 0.875rem !important;
+  }
+
+  footer > div {
+    max-width: 100% !important;
+  }
+}
