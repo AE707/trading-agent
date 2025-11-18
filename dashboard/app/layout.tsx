@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Sidebar from './components/Sidebar';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 export const metadata: Metadata = {
   title: 'Trading Agent Dashboard',
@@ -16,14 +18,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-900 text-slate-50 antialiased">
-        <div className="flex h-screen bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900">
+        {/* Header */}
+        <Header />
+
+        {/* Main Layout with Sidebar and Content */}
+        <div className="flex h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
           {/* Sidebar - Fixed on left */}
           <Sidebar />
 
           {/* Main Content Area */}
           <main className="flex-1 overflow-auto flex flex-col">
             {/* Page Content */}
-            {children}
+            <div className="flex-1 overflow-auto">
+              {children}
+            </div>
+
+            {/* Footer */}
+            <Footer />
           </main>
         </div>
       </body>
